@@ -1,6 +1,6 @@
 # Doctor app
 
-## Places
+## Locations
 
 ## Receptionists
 
