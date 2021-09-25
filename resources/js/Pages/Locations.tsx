@@ -15,6 +15,9 @@ const Locations: React.FC<Props> = ({ locations }) => {
         style={{ padding: 24, minHeight: 360 }}
       >
         <Divider orientation="left">Locations</Divider>
+        <p>
+          <button>Add location</button>
+        </p>
         {locations.length > 0 &&
           locations.map((location) => {
             return (

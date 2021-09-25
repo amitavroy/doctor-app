@@ -26,17 +26,20 @@ class DefaultData extends Seeder
     {
         Location::create([
             'name' => 'Fortis',
-            'short_address' => 'Vashi, Navi Mumbai'
+            'short_address' => 'Vashi, Navi Mumbai',
+            'type' => 'HOSPITAL'
         ]);
 
         Location::create([
             'name' => 'Apollo',
-            'short_address' => 'Belapur, Navi Mumbai'
+            'short_address' => 'Belapur, Navi Mumbai',
+            'type' => 'HOSPITAL'
         ]);
 
         Location::create([
             'name' => 'Matrix clinix',
-            'short_address' => 'Nerul, Navi Mumbai'
+            'short_address' => 'Nerul, Navi Mumbai',
+            'type' => 'HOSPITAL'
         ]);
     }
 }
