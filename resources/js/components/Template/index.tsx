@@ -1,12 +1,14 @@
-import React, { FC, useState } from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
 import {
   DesktopOutlined,
-  PieChartOutlined,
   FileOutlined,
+  PieChartOutlined,
   TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons';
+import { InertiaLink } from '@inertiajs/inertia-react';
+import { Breadcrumb, Layout, Menu } from 'antd';
+import React, { FC, useEffect, useState } from 'react';
+import route from 'ziggy-js';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -15,16 +17,30 @@ interface Props {}
 
 const Template: FC<Props> = ({ children }) => {
   const [menuIsOpen, setMenuIsOpen] = useState(true);
+  const [selectedMenu, setSelectedMenu] = useState(['1']);
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider collapsible collapsed={!menuIsOpen}>
         <div className="logo" onClick={() => setMenuIsOpen(!menuIsOpen)} />
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-          <Menu.Item key="1" icon={<PieChartOutlined />}>
-            Option 1
+        <Menu
+          theme="dark"
+          defaultSelectedKeys={selectedMenu}
+          mode="inline"
+          selectedKeys={selectedMenu}
+        >
+          <Menu.Item
+            key="1"
+            icon={<PieChartOutlined />}
+            onClick={() => setSelectedMenu(['1'])}
+          >
+            <InertiaLink href={route('home')}>Home</InertiaLink>
           </Menu.Item>
-          <Menu.Item key="2" icon={<DesktopOutlined />}>
-            Option 2
+          <Menu.Item
+            key="2"
+            icon={<DesktopOutlined />}
+            onClick={() => setSelectedMenu(['2'])}
+          >
+            <InertiaLink href={route('locations')}>Locations</InertiaLink>
           </Menu.Item>
           <SubMenu key="sub1" icon={<UserOutlined />} title="User">
             <Menu.Item key="3">Tom</Menu.Item>

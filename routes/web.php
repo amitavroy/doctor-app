@@ -6,6 +6,6 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Home');
-});
+})->name('home');
 
 Route::get('/locations', [LocationController::class, 'index'])->name('locations');
