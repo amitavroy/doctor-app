@@ -1,7 +1,9 @@
 import React from 'react';
-import { Row, Col, Divider, List } from 'antd';
+import { Row, Col, Divider, List, Button } from 'antd';
 
 import Template from '../components/Template';
+import { InertiaLink } from '@inertiajs/inertia-react';
+import route from 'ziggy-js';
 
 interface Props {
   locations: Array<any>;
@@ -15,9 +17,13 @@ const Locations: React.FC<Props> = ({ locations }) => {
         style={{ padding: 24, minHeight: 360 }}
       >
         <Divider orientation="left">Locations</Divider>
-        <p>
-          <button>Add location</button>
-        </p>
+        <Col>
+          <Row justify="end">
+            <InertiaLink href={route('locations.add')}>
+              <Button type="primary">Add location</Button>
+            </InertiaLink>
+          </Row>
+        </Col>
         {locations.length > 0 &&
           locations.map((location) => {
             return (

@@ -24,17 +24,12 @@ class LocationController extends Controller
 
     public function store(Request $request)
     {
-        logger(123);
-        $postData = $request->validate([
+        Location::create($request->validate([
             'name' => 'required|max:250',
             'short_address' => 'required',
-            'type' => 'required'
-        ]);
-        logger(321);
+            'type' => 'required',
+        ]));
 
-        $location = Location::create($postData);
-        logger($location);
-
-        // return Redirect::route('locations');
+        return Redirect::route('locations');
     }
 }

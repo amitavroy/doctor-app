@@ -1,17 +1,14 @@
+import { Inertia } from '@inertiajs/inertia';
+import { InertiaLink } from '@inertiajs/inertia-react';
+import { Button, Col, Divider, Form, Input, Row, Select, Space } from 'antd';
 import React from 'react';
-import { Row, Col, Divider, List, Form, Input, Button, Select } from 'antd';
+import route from 'ziggy-js';
+
+import Template from '../components/Template';
 
 const { Option } = Select;
 
-import Template from '../components/Template';
-import { Inertia } from '@inertiajs/inertia';
-import route from 'ziggy-js';
-
-interface Props {
-  locations: Array<any>;
-}
-
-const LocationsAdd: React.FC<Props> = ({ locations }) => {
+const LocationsAdd: React.FC = () => {
   const [form] = Form.useForm();
   const tailLayout = {
     wrapperCol: { offset: 4, span: 16 },
@@ -20,9 +17,8 @@ const LocationsAdd: React.FC<Props> = ({ locations }) => {
     form.setFieldsValue({ type: value });
   };
   const onFinish = (values: any) => {
-    console.log(values);
     Inertia.post(route('locations.save'), values);
-    // form.resetFields();
+    form.resetFields();
   };
   return (
     <Template>
@@ -80,9 +76,12 @@ const LocationsAdd: React.FC<Props> = ({ locations }) => {
               </Form.Item>
 
               <Form.Item {...tailLayout}>
-                <Button type="primary" htmlType="submit">
-                  Save
-                </Button>
+                <Space size={18}>
+                  <Button type="primary" htmlType="submit">
+                    Save
+                  </Button>
+                  <InertiaLink href={route('locations')}>Back</InertiaLink>
+                </Space>
               </Form.Item>
             </Form>
           </Col>
