@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Location;
+use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -20,6 +21,8 @@ class DefaultData extends Seeder
         ]);
 
         $this->createLocations();
+
+//        Patient::factory(10)->create();
     }
 
     private function createLocations()

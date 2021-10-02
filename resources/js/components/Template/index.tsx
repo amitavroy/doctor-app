@@ -16,30 +16,25 @@ const { SubMenu } = Menu;
 interface Props {}
 
 const Template: FC<Props> = ({ children }) => {
+  useEffect(() => {
+    console.log(route().current());
+  }, []);
   const [menuIsOpen, setMenuIsOpen] = useState(true);
-  const [selectedMenu, setSelectedMenu] = useState(['1']);
+  const [currentRoute, setCurrentRoute] = useState([`${route().current()}`]);
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider collapsible collapsed={!menuIsOpen}>
         <div className="logo" onClick={() => setMenuIsOpen(!menuIsOpen)} />
         <Menu
           theme="dark"
-          defaultSelectedKeys={selectedMenu}
+          defaultSelectedKeys={currentRoute}
           mode="inline"
-          selectedKeys={selectedMenu}
+          selectedKeys={currentRoute}
         >
-          <Menu.Item
-            key="1"
-            icon={<PieChartOutlined />}
-            onClick={() => setSelectedMenu(['1'])}
-          >
+          <Menu.Item key="home" icon={<PieChartOutlined />}>
             <InertiaLink href={route('home')}>Home</InertiaLink>
           </Menu.Item>
-          <Menu.Item
-            key="2"
-            icon={<DesktopOutlined />}
-            onClick={() => setSelectedMenu(['2'])}
-          >
+          <Menu.Item key="locations" icon={<DesktopOutlined />}>
             <InertiaLink href={route('locations')}>Locations</InertiaLink>
           </Menu.Item>
           <SubMenu key="sub1" icon={<UserOutlined />} title="User">
