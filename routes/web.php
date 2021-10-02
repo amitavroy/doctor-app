@@ -13,3 +13,4 @@ Route::post('/locations', [LocationController::class, 'store'])->name('locations
 Route::get('/locations/add', [LocationController::class, 'add'])->name('locations.add');
 Route::get('/locations/{location}', [LocationController::class, 'view'])->name('locations.view');
 Route::post('/locations/update', [LocationController::class, 'update'])->name('locations.update');
+Route::post('/locations/delete', [LocationController::class, 'destroy'])->name('locations.delete');

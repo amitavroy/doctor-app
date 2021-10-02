@@ -56,4 +56,14 @@ class LocationController extends Controller
 
         return Redirect::route('locations');
     }
+
+    public function destroy(Request $request)
+    {
+        $postData = $request->validate([
+            'id' => 'required',
+        ]);
+
+        Location::findOrFail($postData['id'])->delete();
+        return Redirect::route('locations');
+    }
 }

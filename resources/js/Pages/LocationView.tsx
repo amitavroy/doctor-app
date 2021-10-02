@@ -1,7 +1,17 @@
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink } from '@inertiajs/inertia-react';
-import { Button, Col, Divider, Form, Input, Row, Select, Space } from 'antd';
-import React, { useEffect } from 'react';
+import {
+  Button,
+  Col,
+  Divider,
+  Form,
+  Input,
+  Modal,
+  Row,
+  Select,
+  Space,
+} from 'antd';
+import React, { useEffect, useState } from 'react';
 import route from 'ziggy-js';
 
 import Template from '../components/Template';
@@ -21,6 +31,7 @@ const LocationsAdd: React.FC<Props> = ({ location }) => {
     });
   }, []);
   const [form] = Form.useForm();
+  const [showModal, setModal] = useState(false);
   const tailLayout = {
     wrapperCol: { offset: 4, span: 16 },
   };
@@ -31,6 +42,13 @@ const LocationsAdd: React.FC<Props> = ({ location }) => {
     values.id = location.id;
     Inertia.post(route('locations.update'), values);
     form.resetFields();
+  };
+  const handleDelete = (event: React.MouseEvent) => {
+    event.preventDefault();
+    setModal(true);
+  };
+  const deleteLocation = () => {
+    Inertia.post(route('locations.delete', { id: location.id }));
   };
   return (
     <Template>
@@ -93,9 +111,22 @@ const LocationsAdd: React.FC<Props> = ({ location }) => {
                     Save
                   </Button>
                   <InertiaLink href={route('locations')}>Back</InertiaLink>
+                  <a href="#" onClick={handleDelete}>
+                    Delete
+                  </a>
                 </Space>
               </Form.Item>
             </Form>
+            <Modal
+              title="Delete location?"
+              visible={showModal}
+              onCancel={() => setModal(false)}
+              onOk={deleteLocation}
+              okText="Delete"
+              cancelText="Cancel"
+            >
+              Once you delete a location, you will not be able to get it back.
+            </Modal>
           </Col>
         </Row>
       </div>
