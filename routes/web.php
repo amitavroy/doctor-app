@@ -10,5 +10,6 @@ Route::get('/', function () {
 
 Route::get('/locations', [LocationController::class, 'index'])->name('locations');
 Route::post('/locations', [LocationController::class, 'store'])->name('locations.save');
-
 Route::get('/locations/add', [LocationController::class, 'add'])->name('locations.add');
+Route::get('/locations/{location}', [LocationController::class, 'view'])->name('locations.view');
+Route::post('/locations/update', [LocationController::class, 'update'])->name('locations.update');

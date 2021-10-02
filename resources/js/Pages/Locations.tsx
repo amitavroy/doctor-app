@@ -29,7 +29,11 @@ const Locations: React.FC<Props> = ({ locations }) => {
             return (
               <List.Item key={location.id}>
                 <List.Item.Meta
-                  title={location.name}
+                  title={
+                    <InertiaLink href={route('locations.view', { location })}>
+                      {location.name}
+                    </InertiaLink>
+                  }
                   description={location.short_address}
                 ></List.Item.Meta>
               </List.Item>

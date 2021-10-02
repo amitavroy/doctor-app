@@ -32,4 +32,28 @@ class LocationController extends Controller
 
         return Redirect::route('locations');
     }
+
+    public function view(Location $location)
+    {
+        return Inertia::render('LocationView')
+            ->with('location', $location);
+    }
+
+    public function update(Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required|min:3|max:255',
+            'short_address' => 'required|min:3|max:255',
+            'type' => 'required',
+            'id' => 'required|exists:locations,id'
+        ]);
+
+        $location = Location::find($data['id']);
+        $location->name = $data['name'];
+        $location->short_address = $data['short_address'];
+        $location->type = $data['type'];
+        $location->save();
+
+        return Redirect::route('locations');
+    }
 }
