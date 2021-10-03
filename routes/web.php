@@ -16,5 +16,6 @@ Route::get('locations/{location}', [LocationController::class, 'view'])->name('l
 Route::post('locations/update', [LocationController::class, 'update'])->name('locations.update');
 Route::post('locations/delete', [LocationController::class, 'destroy'])->name('locations.delete');
 
-Route::get('patients/add', [PatientController::class, 'add'])->name('patients.add');
+Route::get('patients', [PatientController::class, 'index'])->name('patients.list');
 Route::post('patients', [PatientController::class, 'store'])->name('patients.save');
+Route::get('patients/add', [PatientController::class, 'add'])->name('patients.add');

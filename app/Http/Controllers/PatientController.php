@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Patient;
 use App\Services\PatientService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -17,6 +18,16 @@ class PatientController extends Controller
     public function __construct(PatientService $patientService)
     {
         $this->patientService = $patientService;
+    }
+
+    public function index()
+    {
+        $patients = Patient::query()
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return Inertia::render('Patients')
+            ->with('patients', $patients);
     }
 
     public function add()
@@ -35,6 +46,6 @@ class PatientController extends Controller
 
         $this->patientService->createPatient($data);
 
-        return Redirect::route('locations');
+        return Redirect::route('patients.list');
     }
 }

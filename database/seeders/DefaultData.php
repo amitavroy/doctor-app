@@ -22,7 +22,7 @@ class DefaultData extends Seeder
 
         $this->createLocations();
 
-//        Patient::factory(10)->create();
+        Patient::factory(50)->create();
     }
 
     private function createLocations()

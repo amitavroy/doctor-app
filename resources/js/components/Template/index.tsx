@@ -37,8 +37,15 @@ const Template: FC<Props> = ({ children }) => {
           <Menu.Item key="locations" icon={<DesktopOutlined />}>
             <InertiaLink href={route('locations')}>Locations</InertiaLink>
           </Menu.Item>
-          <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-            <Menu.Item key="3">Tom</Menu.Item>
+          <SubMenu key="sub1" icon={<UserOutlined />} title="Patients">
+            <Menu.Item key="patients/list">
+              <InertiaLink href={route('patients.list')}>
+                View patients
+              </InertiaLink>
+            </Menu.Item>
+            <Menu.Item key="patients/add">
+              <InertiaLink href={route('patients.add')}>Add new</InertiaLink>
+            </Menu.Item>
             <Menu.Item key="4">Bill</Menu.Item>
             <Menu.Item key="5">Alex</Menu.Item>
           </SubMenu>
