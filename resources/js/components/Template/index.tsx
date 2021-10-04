@@ -17,7 +17,7 @@ interface Props {}
 
 const Template: FC<Props> = ({ children }) => {
   useEffect(() => {
-    console.log(route().current());
+    // console.log(route().current());
   }, []);
   const [menuIsOpen, setMenuIsOpen] = useState(true);
   const [currentRoute, setCurrentRoute] = useState([`${route().current()}`]);

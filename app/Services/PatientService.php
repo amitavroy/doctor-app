@@ -32,4 +32,17 @@ class PatientService
             logger()->error($exception->getMessage());
         }
     }
+
+    public function updatePatient($patientData)
+    {
+        $patient = Patient::find($patientData['id']);
+
+        $patient->name = $patientData['name'];
+        $patient->phone_number = $patientData['phone_number'];
+        $patient->year_of_birth = now()->subYears($patientData['age'])->format('Y');
+        $patient->weight = $patientData['weight'];
+        $patient->save();
+
+        return $patient;
+    }
 }

@@ -1,7 +1,14 @@
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 import { Inertia, Method } from '@inertiajs/inertia';
 import { InertiaLink } from '@inertiajs/inertia-react';
-import { Col, Divider, Space, Table, TablePaginationConfig } from 'antd';
+import {
+  Col,
+  Divider,
+  Popconfirm,
+  Space,
+  Table,
+  TablePaginationConfig,
+} from 'antd';
 import React from 'react';
 import route from 'ziggy-js';
 
@@ -24,10 +31,15 @@ const Patients: React.FC<Props> = ({ patients }) => {
       key: 'id',
       render: (key: any, record: any) => (
         <Space size="middle">
-          <InertiaLink href={route('patients.add')}>
-            <EditOutlined />
+          <InertiaLink href={route('patients.view', { patient: record.id })}>
+            <EyeOutlined />
           </InertiaLink>
-          <DeleteOutlined />
+          <Popconfirm
+            title="Delete Patient record?"
+            onConfirm={() => deletePatient(record.id)}
+          >
+            <DeleteOutlined />
+          </Popconfirm>
         </Space>
       ),
     },
@@ -39,6 +51,9 @@ const Patients: React.FC<Props> = ({ patients }) => {
   ) => {
     const url = route('patients.list') + `?page=${pagination.current}`;
     Inertia.visit(url, { method: Method.GET });
+  };
+  const deletePatient = (id: number) => {
+    Inertia.post(route('patients.delete', { id }));
   };
   return (
     <Template>

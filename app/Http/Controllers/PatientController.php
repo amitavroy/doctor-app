@@ -11,6 +11,7 @@ use Inertia\Inertia;
 class PatientController extends Controller
 {
     private PatientService $patientService;
+    private $rules = [];
 
     /**
      * @param PatientService $patientService
@@ -18,6 +19,12 @@ class PatientController extends Controller
     public function __construct(PatientService $patientService)
     {
         $this->patientService = $patientService;
+        $this->rules = [
+            'name' => 'required|min:3',
+            'phone_number' => 'required|min:10',
+            'age' => 'required|integer',
+            'weight' => 'required|integer',
+        ];
     }
 
     public function index()
@@ -30,6 +37,12 @@ class PatientController extends Controller
             ->with('patients', $patients);
     }
 
+    public function view(Patient $patient)
+    {
+        return Inertia::render('PatientView')
+            ->with('patient', $patient);
+    }
+
     public function add()
     {
         return Inertia::render('PatientsAdd');
@@ -37,15 +50,30 @@ class PatientController extends Controller
 
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
-        $data = $request->validate([
-            'name' => 'required|min:3',
-            'phone_number' => 'required|min:10',
-            'age' => 'required|integer',
-            'weight' => 'required|integer',
-        ]);
+        $data = $request->validate($this->rules);
 
         $this->patientService->createPatient($data);
 
+        return Redirect::route('patients.list');
+    }
+
+    public function destroy(Request $request)
+    {
+        $postData = $request->validate([
+            'id' => 'required',
+        ]);
+
+        Patient::findOrFail($postData['id'])->delete();
+        return Redirect::route('patients.list');
+    }
+
+    public function update(Request $request)
+    {
+        $rules = $this->rules;
+        $rules['id'] = 'required|exists:patients,id';
+        $data = $request->validate($rules);
+
+        $this->patientService->updatePatient($data);
         return Redirect::route('patients.list');
     }
 }

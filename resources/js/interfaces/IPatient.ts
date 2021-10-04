@@ -1,4 +1,5 @@
 interface IPatient {
+  id: number;
   patient_id: number;
   name: string;
   phone_number: string;

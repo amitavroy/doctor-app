@@ -6,7 +6,7 @@ import {
   Divider,
   Form,
   Input,
-  Modal,
+  Popconfirm,
   Row,
   Select,
   Space,
@@ -31,7 +31,6 @@ const LocationsAdd: React.FC<Props> = ({ location }) => {
     });
   }, []);
   const [form] = Form.useForm();
-  const [showModal, setModal] = useState(false);
   const tailLayout = {
     wrapperCol: { offset: 4, span: 16 },
   };
@@ -45,7 +44,6 @@ const LocationsAdd: React.FC<Props> = ({ location }) => {
   };
   const handleDelete = (event: React.MouseEvent) => {
     event.preventDefault();
-    setModal(true);
   };
   const deleteLocation = () => {
     Inertia.post(route('locations.delete', { id: location.id }));
@@ -111,22 +109,17 @@ const LocationsAdd: React.FC<Props> = ({ location }) => {
                     Save
                   </Button>
                   <InertiaLink href={route('locations')}>Back</InertiaLink>
-                  <a href="#" onClick={handleDelete}>
-                    Delete
-                  </a>
+                  <Popconfirm
+                    title="Delete location?"
+                    onConfirm={deleteLocation}
+                  >
+                    <a href="#" onClick={handleDelete}>
+                      Delete
+                    </a>
+                  </Popconfirm>
                 </Space>
               </Form.Item>
             </Form>
-            <Modal
-              title="Delete location?"
-              visible={showModal}
-              onCancel={() => setModal(false)}
-              onOk={deleteLocation}
-              okText="Delete"
-              cancelText="Cancel"
-            >
-              Once you delete a location, you will not be able to get it back.
-            </Modal>
           </Col>
         </Row>
       </div>
