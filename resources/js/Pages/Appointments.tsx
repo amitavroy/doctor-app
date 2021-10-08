@@ -1,6 +1,6 @@
 import { Inertia, Method } from '@inertiajs/inertia';
 import { InertiaLink } from '@inertiajs/inertia-react';
-import { Button, Col, Divider, Row, Table, TablePaginationConfig } from 'antd';
+import { Col, Divider, Table, TablePaginationConfig } from 'antd';
 import React from 'react';
 import route from 'ziggy-js';
 
@@ -62,7 +62,13 @@ const appointmentTableCols = [
   {
     title: 'Name',
     key: 'name',
-    render: (key: any, record: any) => <span>{record.patient.name}</span>,
+    render: (key: any, record: any) => (
+      <InertiaLink
+        href={route('appointments.view', { appointment: record.id })}
+      >
+        {record.patient.name}
+      </InertiaLink>
+    ),
   },
   {
     title: 'Phone',

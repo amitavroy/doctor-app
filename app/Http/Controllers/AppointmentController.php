@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use App\Services\AppointmentService;
 use Inertia\Inertia;
 
@@ -19,5 +20,11 @@ class AppointmentController extends Controller
         $appointments = $this->appointmentService->getAppointments();
         return Inertia::render('Appointments')
             ->with('appointments', $appointments);
+    }
+
+    public function view(Appointment $appointment)
+    {
+        return Inertia::render('AppointmentView')
+            ->with('appointment', $appointment);
     }
 }
