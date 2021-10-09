@@ -22,4 +22,10 @@ class Patient extends Model
     {
         return Carbon::parse($value)->format('Y-m-d');
     }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class)
+            ->orderBy('id', 'desc');
+    }
 }

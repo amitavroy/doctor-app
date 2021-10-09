@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Route;
@@ -22,3 +23,6 @@ Route::get('patients/add', [PatientController::class, 'add'])->name('patients.ad
 Route::get('patients/{patient}', [PatientController::class, 'view'])->name('patients.view');
 Route::post('patients/update', [PatientController::class, 'update'])->name('patients.update');
 Route::post('patients/delete', [PatientController::class, 'destroy'])->name('patients.delete');
+
+Route::get('appointments', [AppointmentController::class, 'index'])->name('appointments.list');
+Route::get('appointments/{appointment}', [AppointmentController::class, 'view'])->name('appointments.view');

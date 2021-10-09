@@ -1,8 +1,8 @@
 import {
+  ClockCircleOutlined,
   DesktopOutlined,
   FileOutlined,
   PieChartOutlined,
-  TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons';
 import { InertiaLink } from '@inertiajs/inertia-react';
@@ -37,7 +37,18 @@ const Template: FC<Props> = ({ children }) => {
           <Menu.Item key="locations" icon={<DesktopOutlined />}>
             <InertiaLink href={route('locations')}>Locations</InertiaLink>
           </Menu.Item>
-          <SubMenu key="sub1" icon={<UserOutlined />} title="Patients">
+          <SubMenu
+            key="sub1"
+            icon={<ClockCircleOutlined />}
+            title="Appointments"
+          >
+            <Menu.Item key="appointment/list">
+              <InertiaLink href={route('appointments.list')}>
+                View appointments
+              </InertiaLink>
+            </Menu.Item>
+          </SubMenu>
+          <SubMenu key="sub2" icon={<UserOutlined />} title="Patients">
             <Menu.Item key="patients/list">
               <InertiaLink href={route('patients.list')}>
                 View patients
@@ -46,12 +57,11 @@ const Template: FC<Props> = ({ children }) => {
             <Menu.Item key="patients/add">
               <InertiaLink href={route('patients.add')}>Add new</InertiaLink>
             </Menu.Item>
-            <Menu.Item key="4">Bill</Menu.Item>
-            <Menu.Item key="5">Alex</Menu.Item>
-          </SubMenu>
-          <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
-            <Menu.Item key="6">Team 1</Menu.Item>
-            <Menu.Item key="8">Team 2</Menu.Item>
+            <Menu.Item key="patients/add">
+              <InertiaLink href={route('patients.add')}>
+                Add appointment
+              </InertiaLink>
+            </Menu.Item>
           </SubMenu>
           <Menu.Item key="9" icon={<FileOutlined />}>
             Files
