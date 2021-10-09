@@ -54,7 +54,7 @@ class PatientController extends Controller
 
         $this->patientService->createPatient($data);
 
-        return Redirect::route('patients.list');
+        return Redirect::back();
     }
 
     public function destroy(Request $request)

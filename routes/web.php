@@ -25,4 +25,5 @@ Route::post('patients/update', [PatientController::class, 'update'])->name('pati
 Route::post('patients/delete', [PatientController::class, 'destroy'])->name('patients.delete');
 
 Route::get('appointments', [AppointmentController::class, 'index'])->name('appointments.list');
+Route::get('appointments/add', [AppointmentController::class, 'add'])->name('appointments.add');
 Route::get('appointments/{appointment}', [AppointmentController::class, 'view'])->name('appointments.view');
