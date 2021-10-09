@@ -52,9 +52,13 @@ class PatientController extends Controller
     {
         $data = $request->validate($this->rules);
 
-        $this->patientService->createPatient($data);
+        $patient = $this->patientService->createPatient($data);
 
-        return Redirect::back();
+        if ($request->has('destination') == 'book') {
+            return Redirect::route('appointments.book', ['patient' => $patient->id]);
+        }
+
+        return Redirect::route('patients.list');
     }
 
     public function destroy(Request $request)

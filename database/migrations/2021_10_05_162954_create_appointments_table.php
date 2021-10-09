@@ -17,9 +17,13 @@ class CreateAppointmentsTable extends Migration
             $table->id();
             $table->foreignId('patient_id');
             $table->foreignId('location_id');
+            $table->string('type', 100);
             $table->date('date');
-            $table->time('time');
+            $table->time('time')->nullable();
             $table->timestamps();
+
+            $table->index('location_id');
+            $table->index('patient_id');
         });
     }
 

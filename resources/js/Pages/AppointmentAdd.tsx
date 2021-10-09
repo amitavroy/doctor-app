@@ -18,6 +18,7 @@ const AppointmentAdd: React.FC<Props> = ({ patient, phone_number }) => {
   const [formSearch] = Form.useForm();
   const [formPatientAdd] = Form.useForm();
   const onFinishPatientAdd = (values: any) => {
+    values.destination = 'book';
     Inertia.post(route('patients.save'), values);
     formPatientAdd.resetFields();
   };
@@ -77,7 +78,9 @@ const AppointmentAdd: React.FC<Props> = ({ patient, phone_number }) => {
                         <IconText
                           icon={StarOutlined}
                           text="Book appointment"
-                          link={route('appointments.list')}
+                          link={route('appointments.book', {
+                            patient: patient.id,
+                          })}
                           key="list-vertical-app-o"
                         />,
                         <IconText
