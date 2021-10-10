@@ -3,9 +3,10 @@ import { Col, Divider, TablePaginationConfig } from 'antd';
 import React from 'react';
 import route from 'ziggy-js';
 
-import Template from '../components/Template';
-import IPaginateAppointment from '../interfaces/IPaginateAppointments';
 import AppointmentTable from '../components/Appointments/AppointmentTable';
+import Template from '../components/Template';
+import IBreadcrumb from '../interfaces/IBreadcrumb';
+import IPaginateAppointment from '../interfaces/IPaginateAppointments';
 
 interface Props {
   appointments: IPaginateAppointment;
@@ -17,7 +18,7 @@ const Appointments: React.FC<Props> = ({ appointments }) => {
     Inertia.visit(url, { method: Method.GET });
   };
   return (
-    <Template>
+    <Template breadcrumbs={breadcrumbs}>
       <div
         className="site-layout-background"
         style={{ padding: 24, minHeight: 360 }}
@@ -42,3 +43,8 @@ const Appointments: React.FC<Props> = ({ appointments }) => {
 };
 
 export default Appointments;
+
+const breadcrumbs: Array<IBreadcrumb> = [
+  { name: 'Home', link: route('home') },
+  { name: 'Appointments', link: '' },
+];

@@ -1,9 +1,10 @@
+import { InertiaLink } from '@inertiajs/inertia-react';
+import { Button, Col, Divider, List, Row } from 'antd';
 import React from 'react';
-import { Row, Col, Divider, List, Button } from 'antd';
+import route from 'ziggy-js';
 
 import Template from '../components/Template';
-import { InertiaLink } from '@inertiajs/inertia-react';
-import route from 'ziggy-js';
+import IBreadcrumb from '../interfaces/IBreadcrumb';
 
 interface Props {
   locations: Array<any>;
@@ -11,7 +12,7 @@ interface Props {
 
 const Locations: React.FC<Props> = ({ locations }) => {
   return (
-    <Template>
+    <Template breadcrumbs={breadcrumbs}>
       <div
         className="site-layout-background"
         style={{ padding: 24, minHeight: 360 }}
@@ -45,3 +46,8 @@ const Locations: React.FC<Props> = ({ locations }) => {
 };
 
 export default Locations;
+
+const breadcrumbs: Array<IBreadcrumb> = [
+  { name: 'Home', link: route('home') },
+  { name: 'Locations', link: '' },
+];
