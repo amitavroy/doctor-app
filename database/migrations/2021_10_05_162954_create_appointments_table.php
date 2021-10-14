@@ -20,6 +20,7 @@ class CreateAppointmentsTable extends Migration
             $table->string('type', 100);
             $table->date('date');
             $table->time('time')->nullable();
+            $table->boolean('visited')->default(0);
             $table->timestamps();
 
             $table->index('location_id');

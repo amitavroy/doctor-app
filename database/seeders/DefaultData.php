@@ -20,6 +20,13 @@ class DefaultData extends Seeder
             'email_verified_at' => now(),
         ]);
 
+        User::create([
+            'name' => 'Jhon Doe',
+            'email' => 'jhondoe@gmail.com',
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
+        ]);
+
         $this->createLocations();
         $this->createPatients();
 

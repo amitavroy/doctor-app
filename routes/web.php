@@ -4,8 +4,8 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\VisitConfirmController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::get('/', HomeController::class)->name('home');
 
@@ -28,3 +28,5 @@ Route::get('appointments/add', [AppointmentController::class, 'add'])->name('app
 Route::get('appointments/book/{patient}', [AppointmentController::class, 'book'])->name('appointments.book');
 Route::post('appointments/confirm', [AppointmentController::class, 'confirm'])->name('appointments.confirm');
 Route::get('appointments/{appointment}', [AppointmentController::class, 'view'])->name('appointments.view');
+
+Route::post('visit/confirm', [VisitConfirmController::class, 'store'])->name('visit.confirm');

@@ -1,11 +1,13 @@
 import {
   ClockCircleOutlined,
   DesktopOutlined,
-  FileOutlined,
   PieChartOutlined,
   UserOutlined,
 } from '@ant-design/icons';
 import { InertiaLink } from '@inertiajs/inertia-react';
+import MagicBell, {
+  FloatingNotificationInbox,
+} from '@magicbell/magicbell-react';
 import { Breadcrumb, Layout, Menu } from 'antd';
 import React, { FC, useEffect, useState } from 'react';
 import route from 'ziggy-js';
@@ -62,9 +64,6 @@ const Template: FC<Props> = ({ children, breadcrumbs }) => {
               <InertiaLink href={route('patients.add')}>Add new</InertiaLink>
             </Menu.Item>
           </SubMenu>
-          <Menu.Item key="9" icon={<FileOutlined />}>
-            Files
-          </Menu.Item>
         </Menu>
       </Sider>
       <Layout className="site-layout">
@@ -90,6 +89,12 @@ const Template: FC<Props> = ({ children, breadcrumbs }) => {
             )}
           </Breadcrumb>
           {children}
+          <MagicBell
+            apiKey="8c3c335f8e94901e774f34077f254f8ac8c314b1"
+            userExternalId="1"
+          >
+            {(props) => <FloatingNotificationInbox height={500} {...props} />}
+          </MagicBell>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
           Ant Design ©2018 Created by Ant UED
