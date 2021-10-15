@@ -40,6 +40,11 @@ const Template: FC<Props> = ({ children, breadcrumbs }) => {
           <Menu.Item key="home" icon={<PieChartOutlined />}>
             <InertiaLink href={route('home')}>Home</InertiaLink>
           </Menu.Item>
+          <Menu.Item key="doc-dash" icon={<PieChartOutlined />}>
+            <InertiaLink href={route('doctor.dashboard')}>
+              Doctor Dashboard
+            </InertiaLink>
+          </Menu.Item>
           <Menu.Item key="locations" icon={<DesktopOutlined />}>
             <InertiaLink href={route('locations')}>Locations</InertiaLink>
           </Menu.Item>

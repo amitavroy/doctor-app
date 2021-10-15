@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PatientController;
@@ -30,3 +31,5 @@ Route::post('appointments/confirm', [AppointmentController::class, 'confirm'])->
 Route::get('appointments/{appointment}', [AppointmentController::class, 'view'])->name('appointments.view');
 
 Route::post('visit/confirm', [VisitConfirmController::class, 'store'])->name('visit.confirm');
+
+Route::get('doctor/dashboard', [DoctorController::class, 'index'])->name('doctor.dashboard');
