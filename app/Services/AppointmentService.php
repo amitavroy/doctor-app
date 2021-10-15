@@ -6,7 +6,7 @@ use App\Models\Appointment;
 
 class AppointmentService
 {
-    public function getAppointments()
+    public function getAppointments($today = false, $confirmed = true)
     {
         return Appointment::query()
             ->with(['patient' => function ($query) {
@@ -22,6 +22,12 @@ class AppointmentService
                     'location.name',
                 ]);
             }])
+            ->when($today, function ($query) {
+                $query->where('date', now()->format('Y-m-d'));
+            })
+            ->when($confirmed == false, function ($query) {
+                $query->where('visited', 0);
+            })
             ->orderByDesc('date')
             ->orderByDesc('id')
             ->paginate(20);

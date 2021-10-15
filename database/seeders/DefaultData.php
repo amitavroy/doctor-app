@@ -20,6 +20,13 @@ class DefaultData extends Seeder
             'email_verified_at' => now(),
         ]);
 
+        User::create([
+            'name' => 'Jhon Doe',
+            'email' => 'jhondoe@gmail.com',
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
+        ]);
+
         $this->createLocations();
         $this->createPatients();
 
@@ -57,6 +64,10 @@ class DefaultData extends Seeder
             'year_of_birth' => 1985,
             'weight' => 85,
             'visit_count' => 5,
+        ])->appointments()->create([
+            'date' => now()->format('Y-m-d'),
+            'type' => 'Visit',
+            'location_id' => 1,
         ]);
 
         Patient::create([
@@ -67,6 +78,10 @@ class DefaultData extends Seeder
             'year_of_birth' => 1975,
             'weight' => 70,
             'visit_count' => 2,
+        ])->appointments()->create([
+            'date' => now()->format('Y-m-d'),
+            'type' => 'Visit',
+            'location_id' => 1,
         ]);
 
         Patient::create([
@@ -77,6 +92,24 @@ class DefaultData extends Seeder
             'year_of_birth' => 1995,
             'weight' => 55,
             'visit_count' => 1,
+        ])->appointments()->create([
+            'date' => now()->format('Y-m-d'),
+            'type' => 'Visit',
+            'location_id' => 1,
+        ]);
+
+        Patient::create([
+            'patient_id' => '20211004',
+            'name' => 'Nikhil Desai',
+            'phone_number' => '9820098200',
+            'location' => 'CBD',
+            'year_of_birth' => 1999,
+            'weight' => 55,
+            'visit_count' => 3,
+        ])->appointments()->create([
+            'date' => now()->format('Y-m-d'),
+            'type' => 'Visit',
+            'location_id' => 1,
         ]);
     }
 }

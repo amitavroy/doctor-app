@@ -5,6 +5,7 @@ import React from 'react';
 import route from 'ziggy-js';
 
 import Template from '../components/Template';
+import IBreadcrumb from '../interfaces/IBreadcrumb';
 
 const { Option } = Select;
 
@@ -21,7 +22,7 @@ const LocationsAdd: React.FC = () => {
     form.resetFields();
   };
   return (
-    <Template>
+    <Template breadcrumbs={breadcrumbs}>
       <div
         className="site-layout-background"
         style={{ padding: 24, minHeight: 360 }}
@@ -92,3 +93,9 @@ const LocationsAdd: React.FC = () => {
 };
 
 export default LocationsAdd;
+
+const breadcrumbs: Array<IBreadcrumb> = [
+  { name: 'Home', link: route('home') },
+  { name: 'Locations', link: route('locations') },
+  { name: 'Add', link: '' },
+];

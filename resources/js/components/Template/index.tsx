@@ -1,21 +1,27 @@
 import {
   ClockCircleOutlined,
   DesktopOutlined,
-  FileOutlined,
   PieChartOutlined,
   UserOutlined,
 } from '@ant-design/icons';
 import { InertiaLink } from '@inertiajs/inertia-react';
+import MagicBell, {
+  FloatingNotificationInbox,
+} from '@magicbell/magicbell-react';
 import { Breadcrumb, Layout, Menu } from 'antd';
 import React, { FC, useEffect, useState } from 'react';
 import route from 'ziggy-js';
 
+import IBreadcrumb from '../../interfaces/IBreadcrumb';
+
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
-interface Props {}
+interface Props {
+  breadcrumbs?: Array<IBreadcrumb>;
+}
 
-const Template: FC<Props> = ({ children }) => {
+const Template: FC<Props> = ({ children, breadcrumbs }) => {
   useEffect(() => {
     // console.log(route().current());
   }, []);
@@ -57,25 +63,38 @@ const Template: FC<Props> = ({ children }) => {
             <Menu.Item key="patients/add">
               <InertiaLink href={route('patients.add')}>Add new</InertiaLink>
             </Menu.Item>
-            <Menu.Item key="patients/add">
-              <InertiaLink href={route('patients.add')}>
-                Add appointment
-              </InertiaLink>
-            </Menu.Item>
           </SubMenu>
-          <Menu.Item key="9" icon={<FileOutlined />}>
-            Files
-          </Menu.Item>
         </Menu>
       </Sider>
       <Layout className="site-layout">
         <Header className="site-layout-background" style={{ padding: 0 }} />
         <Content style={{ margin: '0 16px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
+            {breadcrumbs && (
+              <>
+                {breadcrumbs.map((breadcrumb) => {
+                  return (
+                    <Breadcrumb.Item key={breadcrumb.name}>
+                      {breadcrumb.link != '' ? (
+                        <InertiaLink href={breadcrumb.link}>
+                          {breadcrumb.name}
+                        </InertiaLink>
+                      ) : (
+                        <>{breadcrumb.name}</>
+                      )}
+                    </Breadcrumb.Item>
+                  );
+                })}
+              </>
+            )}
           </Breadcrumb>
           {children}
+          <MagicBell
+            apiKey="8c3c335f8e94901e774f34077f254f8ac8c314b1"
+            userExternalId="1"
+          >
+            {(props) => <FloatingNotificationInbox height={500} {...props} />}
+          </MagicBell>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
           Ant Design ©2018 Created by Ant UED
