@@ -14,5 +14,16 @@ class Visit extends Model
         'appointment_id',
         'problems',
         'prescription',
+        'is_complete'
     ];
+
+    public function appointment()
+    {
+        return $this->belongsTo(Visit::class);
+    }
+
+    public function patient()
+    {
+        return $this->belongsTo(Patient::class);
+    }
 }

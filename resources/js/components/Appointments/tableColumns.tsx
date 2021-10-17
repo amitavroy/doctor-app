@@ -62,6 +62,23 @@ const appointmentTableCols = (props: Array<any>) => {
       ),
     });
   }
+  if (route().current() == 'doctor.dashboard') {
+    cols.push({
+      title: 'Actions',
+      key: 'actions',
+      render: (key: any, value: any) => (
+        <Space align="center">
+          <Button type="primary" size="small">
+            <InertiaLink
+              href={route('visit.details', { appointment: value.id })}
+            >
+              View
+            </InertiaLink>
+          </Button>
+        </Space>
+      ),
+    });
+  }
   return cols;
 };
 

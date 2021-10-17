@@ -1,4 +1,5 @@
 import IPatient from '../IPatient';
+import IVisit from './IVisit';
 
 interface IAppointment {
   patient_id: number;
@@ -6,5 +7,6 @@ interface IAppointment {
   date: Date;
   time: string;
   patient: IPatient;
+  visit?: IVisit;
 }
 export default IAppointment;

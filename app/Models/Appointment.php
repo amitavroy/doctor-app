@@ -22,4 +22,9 @@ class Appointment extends Model
     {
         return $this->belongsTo(Location::class);
     }
+
+    public function visit()
+    {
+        return $this->hasOne(Visit::class);
+    }
 }
