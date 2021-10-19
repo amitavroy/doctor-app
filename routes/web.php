@@ -4,11 +4,13 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\VisitConfirmController;
 use App\Http\Controllers\VisitController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/', HomeController::class)->name('home');
 
 Route::get('locations', [LocationController::class, 'index'])->name('locations');
