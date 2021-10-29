@@ -25,7 +25,10 @@ class AppointmentService
             ->when($today, function ($query) {
                 $query->where('date', now()->format('Y-m-d'));
             })
-            ->when($confirmed == false, function ($query) {
+            ->when($confirmed === true, function ($query) {
+                $query->where('visited', 1)->where('time', '!=', null);
+            })
+            ->when($confirmed === false, function ($query) {
                 $query->where('visited', 0);
             })
             ->orderByDesc('date')

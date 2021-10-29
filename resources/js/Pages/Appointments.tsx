@@ -1,6 +1,6 @@
 import { Inertia, Method } from '@inertiajs/inertia';
 import { Col, Divider, TablePaginationConfig } from 'antd';
-import React from 'react';
+import React, { useEffect } from 'react';
 import route from 'ziggy-js';
 
 import AppointmentTable from '../components/Appointments/AppointmentTable';

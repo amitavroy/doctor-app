@@ -1,5 +1,10 @@
 # Development Todo
 
+# Doctor Dashboard
+
+[] List of Confirmed Patients
+[] Click on patient to see the form -> Problems & Prescription
+
 ## Dashboard
 
 [x] Confirm will add a time to the entry -> time

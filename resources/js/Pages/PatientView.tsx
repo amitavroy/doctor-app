@@ -1,6 +1,5 @@
 import { Inertia } from '@inertiajs/inertia';
-import { InertiaLink } from '@inertiajs/inertia-react';
-import { Button, Col, Divider, Form, Input, Row, Space } from 'antd';
+import { Col, Divider, Form, Row } from 'antd';
 import React, { useEffect } from 'react';
 import route from 'ziggy-js';
 

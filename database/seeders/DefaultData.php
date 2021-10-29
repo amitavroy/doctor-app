@@ -18,17 +18,12 @@ class DefaultData extends Seeder
             'email' => 'reachme@amitavroy.com',
             'password' => bcrypt('password'),
             'email_verified_at' => now(),
-        ]);
-
-        User::create([
-            'name' => 'Jhon Doe',
-            'email' => 'jhondoe@gmail.com',
-            'password' => bcrypt('password'),
-            'email_verified_at' => now(),
+            'role' => 'doctor',
         ]);
 
         $this->createLocations();
         $this->createPatients();
+        $this->createReceptionists();
 
         // Patient::factory(50)->create();
     }
@@ -111,5 +106,24 @@ class DefaultData extends Seeder
             'type' => 'Visit',
             'location_id' => 1,
         ]);
+    }
+
+    private function createReceptionists()
+    {
+        $loc1 = Location::find(1);
+        $loc2 = Location::find(2);
+        User::create([
+            'name' => 'Jhon Doe',
+            'email' => 'jhondoe@gmail.com',
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
+        ])->location()->attach($loc1);
+
+        User::create([
+            'name' => 'Jane Doe',
+            'email' => 'jane@gmail.com',
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
+        ])->location()->attach($loc2);
     }
 }

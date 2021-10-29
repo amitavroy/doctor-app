@@ -19,4 +19,9 @@ class Location extends Model
         'short_address',
         'type',
     ];
+
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

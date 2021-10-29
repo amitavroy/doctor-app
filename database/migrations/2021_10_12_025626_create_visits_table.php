@@ -21,6 +21,7 @@ class CreateVisitsTable extends Migration
             $table->foreignIdFor(Appointment::class);
             $table->text('problems');
             $table->text('prescription');
+            $table->boolean('is_complete')->default(0);
             $table->timestamps();
         });
     }
