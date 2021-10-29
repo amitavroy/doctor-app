@@ -5,6 +5,7 @@ import route from 'ziggy-js';
 
 import Template from '../components/Template';
 import PatientAddForm from '../forms/PatientAddForm';
+import IBreadcrumb from '../interfaces/IBreadcrumb';
 
 const PatientsAdd: React.FC = () => {
   const [form] = Form.useForm();
@@ -13,7 +14,7 @@ const PatientsAdd: React.FC = () => {
     form.resetFields();
   };
   return (
-    <Template>
+    <Template breadcrumbs={breadcrumb}>
       <div
         className="site-layout-background"
         style={{ padding: 24, minHeight: 360 }}
@@ -30,3 +31,9 @@ const PatientsAdd: React.FC = () => {
 };
 
 export default PatientsAdd;
+
+const breadcrumb: Array<IBreadcrumb> = [
+  { name: 'Home', link: route('home') },
+  { name: 'Patients', link: route('patients.list') },
+  { name: 'Patient add', link: '' },
+];

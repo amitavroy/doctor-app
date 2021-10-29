@@ -6,6 +6,7 @@ import route from 'ziggy-js';
 
 import Template from '../components/Template';
 import PatientAddForm from '../forms/PatientAddForm';
+import IBreadcrumb from '../interfaces/IBreadcrumb';
 import IAppointment from '../interfaces/models/IAppointment';
 
 interface Props {
@@ -19,7 +20,7 @@ const PatientCheckup: React.FC<Props> = ({ appointment }) => {
     Inertia.post(route('visit.update'), values);
   };
   return (
-    <Template>
+    <Template breadcrumbs={breadcrumb}>
       <Row>
         <Col span="8">
           <div
@@ -45,7 +46,10 @@ const PatientCheckup: React.FC<Props> = ({ appointment }) => {
             <Form
               form={patientCheck}
               name="patient_check"
-              initialValues={{}}
+              initialValues={{
+                problems: appointment.visit?.problems,
+                prescription: appointment.visit?.prescription,
+              }}
               autoComplete="false"
               onFinish={handlePatientCheckFormSubmit}
             >
@@ -85,3 +89,9 @@ export default PatientCheckup;
 const tailLayout = {
   wrapperCol: { offset: 4, span: 16 },
 };
+
+const breadcrumb: Array<IBreadcrumb> = [
+  { name: 'Home', link: route('home') },
+  { name: 'My Dashboard', link: route('doctor.dashboard') },
+  { name: 'Patient details', link: '' },
+];
