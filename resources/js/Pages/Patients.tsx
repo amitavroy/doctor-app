@@ -13,6 +13,7 @@ import React from 'react';
 import route from 'ziggy-js';
 
 import Template from '../components/Template';
+import IBreadcrumb from '../interfaces/IBreadcrumb';
 import IPaginatePatient from '../interfaces/models/IPaginatePatient';
 
 interface Props {
@@ -56,7 +57,7 @@ const Patients: React.FC<Props> = ({ patients }) => {
     Inertia.post(route('patients.delete', { id }));
   };
   return (
-    <Template>
+    <Template breadcrumbs={breadcrumb}>
       <div
         className="site-layout-background"
         style={{ padding: 24, minHeight: 360 }}
@@ -84,3 +85,8 @@ const Patients: React.FC<Props> = ({ patients }) => {
 };
 
 export default Patients;
+
+const breadcrumb: Array<IBreadcrumb> = [
+  { name: 'Home', link: route('home') },
+  { name: 'Patients', link: '' },
+];

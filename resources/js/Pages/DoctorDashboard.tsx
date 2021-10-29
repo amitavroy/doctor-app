@@ -4,6 +4,7 @@ import React from 'react';
 import route from 'ziggy-js';
 import AppointmentTable from '../components/Appointments/AppointmentTable';
 import Template from '../components/Template';
+import IBreadcrumb from '../interfaces/IBreadcrumb';
 import IPaginateAppointment from '../interfaces/IPaginateAppointments';
 
 interface Props {
@@ -16,7 +17,7 @@ const DoctorDashboardPage: React.FC<Props> = ({ appointments }) => {
     Inertia.visit(url, { method: Method.GET });
   };
   return (
-    <Template>
+    <Template breadcrumbs={breadcrumb}>
       <div
         className="site-layout-background"
         style={{ padding: 24, minHeight: 360 }}
@@ -36,3 +37,8 @@ const DoctorDashboardPage: React.FC<Props> = ({ appointments }) => {
 };
 
 export default DoctorDashboardPage;
+
+const breadcrumb: Array<IBreadcrumb> = [
+  { name: 'Home', link: route('home') },
+  { name: 'My Dashboard', link: '' },
+];
