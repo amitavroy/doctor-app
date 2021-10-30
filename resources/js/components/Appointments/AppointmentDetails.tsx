@@ -11,9 +11,9 @@ interface Props {
 const AppointmentDetails: React.FC<Props> = ({ appointments }) => {
   return (
     <div>
-      <Collapse defaultActiveKey={['1']} onChange={() => {}}>
-        {appointments &&
-          appointments.map((appointment) => {
+      {appointments && (
+        <Collapse defaultActiveKey={['1']} onChange={() => {}}>
+          {appointments.map((appointment) => {
             return (
               <Panel
                 header={`Visited on ${appointment.date}`}
@@ -31,7 +31,8 @@ const AppointmentDetails: React.FC<Props> = ({ appointments }) => {
               </Panel>
             );
           })}
-      </Collapse>
+        </Collapse>
+      )}
     </div>
   );
 };

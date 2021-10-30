@@ -93,7 +93,7 @@ class DefaultData extends Seeder
             'location_id' => 1,
         ]);
 
-        Patient::create([
+        $nikhil = Patient::create([
             'patient_id' => '20211004',
             'name' => 'Nikhil Desai',
             'phone_number' => '9820098200',
@@ -101,10 +101,26 @@ class DefaultData extends Seeder
             'year_of_birth' => 1999,
             'weight' => 55,
             'visit_count' => 3,
-        ])->appointments()->create([
-            'date' => now()->format('Y-m-d'),
+        ]);
+        $nikhil->appointments()->create([
+            'date' => now()->subDays(7)->format('Y-m-d'),
             'type' => 'Visit',
             'location_id' => 1,
+        ])->visit()->create([
+            'patient_id' => $nikhil->id,
+            'problems' => 'Fever, cough and cold',
+            'prescription' => 'Some medicine',
+            'is_complete' => 1,
+        ]);
+        $nikhil->appointments()->create([
+            'date' => now()->format('Y-m-d'),
+            'type' => 'Follow up',
+            'location_id' => 1,
+        ])->visit()->create([
+            'patient_id' => $nikhil->id,
+            'problems' => 'Fever, cough and cold',
+            'prescription' => 'Some medicine',
+            'is_complete' => 1,
         ]);
     }
 
