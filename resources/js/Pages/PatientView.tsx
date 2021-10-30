@@ -2,6 +2,7 @@ import { Inertia } from '@inertiajs/inertia';
 import { Col, Divider, Form, Row } from 'antd';
 import React, { useEffect } from 'react';
 import route from 'ziggy-js';
+import AppointmentDetails from '../components/Appointments/AppointmentDetails';
 
 import Template from '../components/Template';
 import PatientAddForm from '../forms/PatientAddForm';
@@ -39,6 +40,16 @@ const PatientView: React.FC<Props> = ({ patient }) => {
         <Row>
           <Col span={24}>
             <PatientAddForm form={form} onFinish={onFinish} />
+          </Col>
+        </Row>
+
+        <Divider style={{ marginTop: '20px' }} orientation="left">
+          Appointment details
+        </Divider>
+
+        <Row>
+          <Col span={24}>
+            <AppointmentDetails appointments={patient.appointments || null} />
           </Col>
         </Row>
       </div>
