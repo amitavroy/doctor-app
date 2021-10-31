@@ -10,7 +10,6 @@ use Inertia\Inertia;
 
 class PatientController extends Controller
 {
-    private PatientService $patientService;
     private $rules = [];
 
     /**
@@ -39,6 +38,7 @@ class PatientController extends Controller
 
     public function view(Patient $patient)
     {
+        $patient->load(['appointments', 'appointments.visit']);
         return Inertia::render('PatientView')
             ->with('patient', $patient);
     }

@@ -17,7 +17,7 @@ const appointmentTableCols = (props: Array<any>) => {
       key: 'name',
       render: (key: any, record: any) => (
         <InertiaLink
-          href={route('appointments.view', { appointment: record.id })}
+          href={route('patients.view', { patient: record.patient.id })}
         >
           {record.patient.name}
         </InertiaLink>

@@ -2,8 +2,8 @@
 
 # Doctor Dashboard
 
-[] List of Confirmed Patients
-[] Click on patient to see the form -> Problems & Prescription
+[x] List of Confirmed Patients
+[x] Click on patient to see the form -> Problems & Prescription
 
 ## Dashboard
 
