@@ -1,19 +1,22 @@
 import { Inertia } from '@inertiajs/inertia';
-import { Col, Divider, Row, Form, Input, Space, Button } from 'antd';
-import Text from 'antd/lib/typography/Text';
+import { Button, Col, Divider, Form, Input, Row, Space } from 'antd';
 import React from 'react';
 import route from 'ziggy-js';
+import AppointmentDetails from '../components/Appointments/AppointmentDetails';
 
 import Template from '../components/Template';
-import PatientAddForm from '../forms/PatientAddForm';
 import IBreadcrumb from '../interfaces/IBreadcrumb';
 import IAppointment from '../interfaces/models/IAppointment';
 
 interface Props {
   appointment: IAppointment;
+  historicalAppointments: Array<IAppointment>;
 }
 
-const PatientCheckup: React.FC<Props> = ({ appointment }) => {
+const PatientCheckup: React.FC<Props> = ({
+  appointment,
+  historicalAppointments,
+}) => {
   const [patientCheck] = Form.useForm();
   const handlePatientCheckFormSubmit = (values: any) => {
     values.visit_id = appointment.visit?.id;
@@ -80,6 +83,17 @@ const PatientCheckup: React.FC<Props> = ({ appointment }) => {
           </div>
         </Col>
       </Row>
+      <div
+        className="site-layout-background"
+        style={{ padding: 24, minHeight: 360, marginTop: '10px' }}
+      >
+        <Row>
+          <Col span={24}>
+            <Divider orientation="left">Previous appointments</Divider>
+            <AppointmentDetails appointments={historicalAppointments} />
+          </Col>
+        </Row>
+      </div>
     </Template>
   );
 };

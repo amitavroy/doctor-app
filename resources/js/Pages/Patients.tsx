@@ -23,7 +23,15 @@ interface Props {
 const Patients: React.FC<Props> = ({ patients }) => {
   const tableCols = [
     { title: 'Patient ID', dataIndex: 'patient_id', key: 'patient_id' },
-    { title: 'Name', dataIndex: 'name', key: 'name' },
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      render: (key: any, record: any) => (
+        <InertiaLink href={route('patients.view', { patient: record.id })}>
+          {record.name}
+        </InertiaLink>
+      ),
+    },
     { title: 'Phone number', dataIndex: 'phone_number', key: 'phone_number' },
     { title: 'Visits', dataIndex: 'visit_count', key: 'visit_count' },
     { title: 'Last visit', dataIndex: 'last_visit', key: 'last_visit' },

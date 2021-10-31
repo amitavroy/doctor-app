@@ -113,6 +113,16 @@ class DefaultData extends Seeder
             'is_complete' => 1,
         ]);
         $nikhil->appointments()->create([
+            'date' => now()->subDays(5)->format('Y-m-d'),
+            'type' => 'Follow up',
+            'location_id' => 1,
+        ])->visit()->create([
+            'patient_id' => $nikhil->id,
+            'problems' => 'Fever, cough and cold',
+            'prescription' => 'Some medicine',
+            'is_complete' => 1,
+        ]);
+        $nikhil->appointments()->create([
             'date' => now()->format('Y-m-d'),
             'type' => 'Follow up',
             'location_id' => 1,

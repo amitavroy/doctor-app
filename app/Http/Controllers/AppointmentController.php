@@ -21,7 +21,7 @@ class AppointmentController extends Controller
 
     public function index()
     {
-        $appointments = $this->appointmentService->getAppointments();
+        $appointments = $this->appointmentService->getAppointments(false, false);
         return Inertia::render('Appointments')
             ->with('appointments', $appointments);
     }
