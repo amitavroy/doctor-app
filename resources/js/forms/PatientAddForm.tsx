@@ -14,8 +14,8 @@ const PatientAddForm: React.FC<Props> = ({ form, onFinish }) => {
     <Form
       form={form}
       name="basic"
-      labelCol={{ span: 4 }}
-      wrapperCol={{ span: 8 }}
+      labelCol={{ span: 8 }}
+      wrapperCol={{ span: 16 }}
       initialValues={{ remember: true }}
       autoComplete="off"
       onFinish={(values) => onFinish(values)}

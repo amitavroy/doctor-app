@@ -34,21 +34,21 @@ class AppointmentController extends Controller
 
     public function add(Request $request)
     {
-        $patient = null;
+        $patients = null;
 
         if ($request->has('phone_number')) {
             $request->validate([
                 'phone_number' => 'numeric',
             ]);
 
-            $patient = Patient::query()
+            $patients = Patient::query()
                 ->where('phone_number', $request->input('phone_number'))
-                ->first();
+                ->get();
         }
 
         return Inertia::render('AppointmentAdd')
             ->with('phone_number', $request->input('phone_number'))
-            ->with('patient', $patient);
+            ->with('patients', $patients);
     }
 
     public function book(Patient $patient)
