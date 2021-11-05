@@ -43,6 +43,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('doctor/visit/{appointment}', [VisitController::class, 'view'])->name('visit.details');
     Route::post('doctor/visit/update', [VisitController::class, 'update'])->name('visit.update');
 
+    Route::get('users', [UserController::class, 'index'])->name('user.list');
     Route::get('user/add', [UserController::class, 'add'])->name('user.add');
     Route::post('user/save', [UserController::class, 'store'])->name('user.save');
 });

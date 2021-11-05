@@ -9,6 +9,16 @@ use Inertia\Inertia;
 
 class UserController extends Controller
 {
+    public function index()
+    {
+        $users = User::query()
+            ->where('role', 'receptionist')
+            ->paginate(10);
+
+        return Inertia::render('UserList')
+            ->with('users', $users);
+    }
+
     public function add()
     {
         return Inertia::render('AddUser');
