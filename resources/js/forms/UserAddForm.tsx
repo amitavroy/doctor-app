@@ -33,7 +33,7 @@ const UserAddForm: React.FC<Props> = ({ form, onFinish }) => {
         name="email"
         rules={[{ required: true, message: 'Enter the email address' }]}
       >
-        <Input />
+        <Input type="email" />
       </Form.Item>
 
       <Form.Item
@@ -49,7 +49,7 @@ const UserAddForm: React.FC<Props> = ({ form, onFinish }) => {
           <Button type="primary" htmlType="submit">
             Save
           </Button>
-          <InertiaLink href={route('home')}>Back</InertiaLink>
+          <InertiaLink href={route('user.list')}>Back</InertiaLink>
         </Space>
       </Form.Item>
     </Form>

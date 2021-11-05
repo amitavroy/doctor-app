@@ -13,6 +13,7 @@ class UserController extends Controller
     {
         $users = User::query()
             ->where('role', 'receptionist')
+            ->orderBy('name', 'asc')
             ->paginate(10);
 
         return Inertia::render('UserList')
