@@ -16,7 +16,7 @@ class DefaultData extends Seeder
         $this->user = User::create([
             'name' => 'Amitav Roy',
             'email' => 'reachme@amitavroy.com',
-            'password' => bcrypt('password'),
+            'password' => 'password',
             'email_verified_at' => now(),
             'role' => 'doctor',
         ]);
@@ -141,14 +141,14 @@ class DefaultData extends Seeder
         User::create([
             'name' => 'Jhon Doe',
             'email' => 'jhondoe@gmail.com',
-            'password' => bcrypt('password'),
+            'password' => 'password',
             'email_verified_at' => now(),
         ])->location()->attach($loc1);
 
         User::create([
             'name' => 'Jane Doe',
             'email' => 'jane@gmail.com',
-            'password' => bcrypt('password'),
+            'password' => 'password',
             'email_verified_at' => now(),
         ])->location()->attach($loc2);
     }

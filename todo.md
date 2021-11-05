@@ -1,7 +1,7 @@
 # Development Todo
 
 [x] Search by Phone number should allow Multiple Patient entry
-[ ] Add user (Receptionist)
+[x] Add user (Receptionist)
 [ ] Map user to a Location
 [ ] Make User dashboard based on location
 [ ] Doctor should be able to filter Dashboard by Location
