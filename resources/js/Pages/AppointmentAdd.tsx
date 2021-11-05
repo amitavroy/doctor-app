@@ -10,11 +10,11 @@ import PatientAddForm from '../forms/PatientAddForm';
 import IPatient from '../interfaces/IPatient';
 
 interface Props {
-  patient: IPatient | null;
+  patients: Array<IPatient> | null;
   phone_number: number | null;
 }
 
-const AppointmentAdd: React.FC<Props> = ({ patient, phone_number }) => {
+const AppointmentAdd: React.FC<Props> = ({ patients, phone_number }) => {
   const [formSearch] = Form.useForm();
   const [formPatientAdd] = Form.useForm();
   const onFinishPatientAdd = (values: any) => {
@@ -68,43 +68,49 @@ const AppointmentAdd: React.FC<Props> = ({ patient, phone_number }) => {
                 </Form>
               </Col>
             </Row>
-            {patient && (
-              <Row>
-                <Col span={24}>
-                  <List size="default" itemLayout="vertical">
-                    <List.Item
-                      key={patient.id}
-                      actions={[
-                        <IconText
-                          icon={StarOutlined}
-                          text="Book appointment"
-                          link={route('appointments.book', {
-                            patient: patient.id,
-                          })}
-                          key="list-vertical-app-o"
-                        />,
-                        <IconText
-                          icon={BookOutlined}
-                          text="View history"
-                          link={route('appointments.list')}
-                          key="list-vertical-history-o"
-                        />,
-                      ]}
-                    >
-                      <List.Item.Meta
-                        title={patient.name}
-                        description={`Location: ${patient.location}`}
-                      />
-                      Patient ID: {patient.patient_id}
-                      <br />
-                      Total visits: {patient.visit_count}
-                      <br />
-                      Last visit: {patient.last_visit}
-                    </List.Item>
-                  </List>
-                </Col>
-              </Row>
-            )}
+            {patients &&
+              patients.length > 0 &&
+              patients.map((patient: IPatient) => {
+                return (
+                  <Row>
+                    <Col span={24}>
+                      <List size="default" itemLayout="vertical">
+                        <List.Item
+                          key={patient.id}
+                          actions={[
+                            <IconText
+                              icon={StarOutlined}
+                              text="Book appointment"
+                              link={route('appointments.book', {
+                                patient: patient.id,
+                              })}
+                              key="list-vertical-app-o"
+                            />,
+                            <IconText
+                              icon={BookOutlined}
+                              text="View history"
+                              link={route('patients.view', {
+                                patient: patient.id,
+                              })}
+                              key="list-vertical-history-o"
+                            />,
+                          ]}
+                        >
+                          <List.Item.Meta
+                            title={patient.name}
+                            description={`Location: ${patient.location}`}
+                          />
+                          Patient ID: {patient.patient_id}
+                          <br />
+                          Total visits: {patient.visit_count}
+                          <br />
+                          Last visit: {patient.last_visit}
+                        </List.Item>
+                      </List>
+                    </Col>
+                  </Row>
+                );
+              })}
           </div>
         </Col>
         <Col span={12} offset={1}>

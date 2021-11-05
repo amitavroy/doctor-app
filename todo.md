@@ -1,11 +1,10 @@
 # Development Todo
 
-# Doctor Dashboard
-
-[x] List of Confirmed Patients
-[x] Click on patient to see the form -> Problems & Prescription
-
-## Dashboard
-
-[x] Confirm will add a time to the entry -> time
-[x] Add a Visit entity and the entry should be added when confirmed -> symptoms, prescription
+[x] Search by Phone number should allow Multiple Patient entry
+[x] Add user (Receptionist)
+[x] Listing of users
+[ ] Add the Role based middleware
+[ ] Map user to a Location
+[ ] Make User dashboard based on location
+[ ] Doctor should be able to filter Dashboard by Location
+[ ] Logout
